@@ -48,13 +48,16 @@ const PersonalDetails = () => {
       phoneNumber: data.phoneNumber,
     };
     try {
-      const res = await fetch(`https://haqdarshak-assignment-backend.onrender.com/user`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+      const res = await fetch(
+        `https://haqdarshak-assignment-backend.onrender.com/user-database/user`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
       if (res.ok) {
         console.log("User created successfully");
         navigate("/profile");
