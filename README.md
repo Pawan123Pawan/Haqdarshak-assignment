@@ -8,7 +8,7 @@ This project was built with ReactJS, utilizing libraries such as Tailwind CSS fo
 2. HTML/CSS
 3. Tailwind CSS
 4. Node js
-5. MySql
+5. MongoDB
 
 ## Installation
 
