@@ -3,6 +3,8 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { Divider, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useMyContext } from "../components/ContextApi";
+import { toast } from "react-toastify";
+import Sppiner from "../components/Sppiner";
 const PersonalDetails = () => {
   const navigate = useNavigate();
   const [clickName, setClickName] = useState(false);
@@ -14,6 +16,7 @@ const PersonalDetails = () => {
   const [dob, setDob] = useState("");
   const { data, setData } = useMyContext();
   const [selected, setSelected] = useState("Male");
+  const[loading,setLoading] = useState(false);
 
   const handleChange = (event) => {
     setSelected(event.target.value);
@@ -34,6 +37,7 @@ const PersonalDetails = () => {
   };
 
   const userData = async () => {
+    setLoading(true);
     const user = {
       fullname: fullname,
       gender: selected,
@@ -59,15 +63,20 @@ const PersonalDetails = () => {
         }
       );
       if (res.ok) {
-        console.log("User created successfully");
+        toast.success("User created successfully")
         navigate("/profile");
+        setLoading(false);
       } else {
         console.error("Failed to create user", res);
         navigate("/personal-details");
+        toast.error("Failed to create user");
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error creating user:", error);
       navigate("/personal-details");
+      toast.error(error.message);
+      setLoading(false)
     }
   };
 
@@ -211,7 +220,7 @@ const PersonalDetails = () => {
             className="font-poppins w-full bg-purple text-lg text-white p-3 rounded-[28px]"
             onClick={handleClickButton}
           >
-            Next
+            {loading? <Sppiner/>:"Next"}
           </button>
           <div className=" font-poppins text-xs text-gray-500 mt-3">
             By creating an account, I agree to Haqdarshak’s Terms of Service &

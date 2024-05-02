@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../components/ContextApi";
+import Sppiner from "../components/Sppiner";
 
 const SelectLanguage = () => {
   const language = ["English", "हिंदी", "ಕನ್ನಡ"];
