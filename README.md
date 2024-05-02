@@ -1,8 +1,35 @@
-# React + Vite
+# Project Name: Haqdarshak-assignment.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project was built with ReactJS, utilizing libraries such as Tailwind CSS for styling.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. ReactJS
+2. HTML/CSS
+3. Tailwind CSS
+4. Node js
+5. MySql
+
+## Installation
+
+To install and run this project, follow these steps:
+
+1. Clone the repository:
+
+   ```sh
+   https://github.com/Pawan123Pawan/Haqdarshak-assignment
+   ```
+
+2. Install dependencies:
+   ```sh
+   nmp install
+   ```
+3. Start the development server:
+   ```sh
+   nmp run dev
+   ```
+
+
+## Deploy Link
+
+[Live Project link](https://haqdarshak-assignment-pawankumar.vercel.app/)
