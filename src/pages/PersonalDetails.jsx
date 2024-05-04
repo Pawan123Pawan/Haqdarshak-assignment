@@ -16,10 +16,27 @@ const PersonalDetails = () => {
   const [dob, setDob] = useState("");
   const { data, setData } = useMyContext();
   const [selected, setSelected] = useState("Male");
-  const[loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [dobError, setDOBError] = useState(false);
+  const [ageError, setAgeError] = useState(false);
 
   const handleChange = (event) => {
     setSelected(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    const length = 20;
+    let input = event.target.value;
+    // Remove non-alphabetic characters
+    input = input.replace(/[^a-zA-Z\s]/g, "");
+    if (input !== event.target.value) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+    input = input.slice(0, length);
+    setFullname(input);
   };
 
   const handleClickButton = () => {
@@ -34,6 +51,46 @@ const PersonalDetails = () => {
       //post user information
       userData();
     }
+  };
+
+  const handleDOB = (event) => {
+    const length = 10;
+    let input = event.target.value;
+    // Remove non-numeric and non-slash characters
+    input = input.replace(/[^0-9/]/g, "");
+
+    if (input !== event.target.value) {
+      setDOBError(true);
+    } else {
+      setDOBError(false);
+    }
+    input = input.slice(0, length);
+    setDob(input);
+    checkDob(input);
+  };
+
+  const checkDob = (input) => {
+    if (input.length > 2 && input.charAt(2) !== "/") {
+      setDOBError(true);
+    }
+    if (input.length > 5 && input.charAt(5) !== "/") {
+      setDOBError(true);
+    }
+  };
+
+  const handleAge = (event) => {
+    const length = 3;
+    let input = event.target.value;
+    // Remove non-digit characters
+    input = input.replace(/\D/g, "");
+
+    if (input !== event.target.value) {
+      if (event.target.value.length <= 3) setAgeError(true);
+    } else {
+      setAgeError(false);
+    }
+    input = input.slice(0, length);
+    setAge(input);
   };
 
   const userData = async () => {
@@ -52,18 +109,25 @@ const PersonalDetails = () => {
       phoneNumber: data.phoneNumber,
     };
     try {
-      const res = await fetch(
-        `https://haqdarshak-assignment-backend.onrender.com/user-database/user`,
+      const res = await toast.promise(
+        fetch(
+          `https://haqdarshak-assignment-backend.onrender.com/user-database/user`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        ),
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
+          pending: "Promise is pending",
+          success: "Promise resolved 👌",
+          error: "Promise rejected 🤯",
         }
       );
       if (res.ok) {
-        toast.success("User created successfully")
+        toast.success("User created successfully",{autoClose:7000});
         navigate("/profile");
         setLoading(false);
       } else {
@@ -76,7 +140,7 @@ const PersonalDetails = () => {
       console.error("Error creating user:", error);
       navigate("/personal-details");
       toast.error(error.message);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -110,11 +174,16 @@ const PersonalDetails = () => {
                 {clickName && (
                   <input
                     value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
+                    onChange={handleNameChange}
                     type="text"
                     placeholder="Enter You Full Name"
                     className=" focus:outline-none bg-transparent font-poppins px-1 text-md"
                   />
+                )}
+                {nameError && (
+                  <p className=" font-medium text-xs text-red-700 font-poppins">
+                    *Enter only characters value.
+                  </p>
                 )}
               </div>
               <Divider sx={{ margin: "18px 0" }} />
@@ -170,11 +239,16 @@ const PersonalDetails = () => {
                   {dobClick && (
                     <input
                       value={dob}
-                      onChange={(e) => setDob(e.target.value)}
+                      onChange={handleDOB}
                       type="text"
                       placeholder="DD/MM/YYYY"
                       className=" focus:outline-none bg-transparent font-poppins px-1 text-md w-[60%]"
                     />
+                  )}
+                  {dobError && (
+                    <p className=" font-medium text-xs text-red-700 font-poppins">
+                      *Enter only this format DD/MM/YYYY.
+                    </p>
                   )}
                 </div>
                 <div>OR</div>
@@ -198,13 +272,16 @@ const PersonalDetails = () => {
                   {ageClick && (
                     <input
                       value={age}
-                      onChange={(e) => {
-                        setAge(e.target.value);
-                      }}
+                      onChange={handleAge}
                       type="text"
                       placeholder="age..."
                       className=" w-[60%] focus:outline-none bg-transparent font-poppins px-1 text-md"
                     />
+                  )}
+                  {ageError && (
+                    <p className=" font-medium text-xs text-red-700 font-poppins">
+                      *Enter only numeric value.
+                    </p>
                   )}
                 </div>
               </div>
@@ -220,7 +297,7 @@ const PersonalDetails = () => {
             className="font-poppins w-full bg-purple text-lg text-white p-3 rounded-[28px]"
             onClick={handleClickButton}
           >
-            {loading? <Sppiner/>:"Next"}
+            {loading ? <Sppiner /> : "Next"}
           </button>
           <div className=" font-poppins text-xs text-gray-500 mt-3">
             By creating an account, I agree to Haqdarshak’s Terms of Service &

@@ -8,12 +8,28 @@ const PhoneNumber = () => {
   const [clickPhone, setClickPhone] = useState(false);
   const [number, setNumber] = useState("");
   const { data, setData } = useMyContext();
+  const [numberError, setNumberError] = useState(false);
 
   const handleClickButton = () => {
     if (number && number.length >= 10) {
       setData({ ...data, phoneNumber: number });
       navigate("/otp-verification");
     }
+  };
+
+  const handlePhoneNumberChange = (event) => {
+    const length = 10;
+    let input = event.target.value;
+    // Remove non-digit characters
+    input = input.replace(/\D/g, "");
+
+    if (input !== event.target.value) {
+      if (event.target.value.length <= 10) setNumberError(true);
+    } else {
+      setNumberError(false);
+    }
+    input = input.slice(0, length);
+    setNumber(input);
   };
 
   return (
@@ -47,12 +63,18 @@ const PhoneNumber = () => {
               {clickPhone && (
                 <input
                   value={number}
-                  onChange={(e) => setNumber(e.target.value)}
+                  onChange={handlePhoneNumberChange}
                   type="text"
                   placeholder="Enter the number"
                   className=" focus:outline-none bg-transparent font-poppins px-1 text-md"
                 />
               )}
+              {numberError && (
+                <p className=" font-medium text-xs text-red-700 font-poppins">
+                  *Enter only numeric value and length must be 10.
+                </p>
+              )}
+             
             </div>
             <div className=" font-poppins text-sm text-gray-500 mt-3">
               This is used to create an account in your name on the Haqdarshak

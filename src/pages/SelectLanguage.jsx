@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useMyContext } from "../components/ContextApi";
-import Sppiner from "../components/Sppiner";
 
 const SelectLanguage = () => {
   const language = ["English", "हिंदी", "ಕನ್ನಡ"];
@@ -34,6 +33,7 @@ const SelectLanguage = () => {
       </div>
       <div className="flex-1 bg-mybg h-auto w-full p-8  rounded-t-[10%] flex justify-between flex-col">
         <div className="w-full">
+
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="English"
