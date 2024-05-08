@@ -127,7 +127,7 @@ const PersonalDetails = () => {
         }
       );
       if (res.ok) {
-        toast.success("User created successfully",{autoClose:7000});
+        toast.success("User created successfully", { autoClose: 7000 });
         navigate("/profile");
         setLoading(false);
       } else {
@@ -146,11 +146,11 @@ const PersonalDetails = () => {
 
   return (
     <div className="w-full h-screen  bg-purple md:w-1/2 lg:w-[30%] mx-auto flex items-center justify-between md:rounded-lg flex-col ">
-      <div
-        className=" w-full p-8 pb-0"
-        onClick={() => navigate("/otp-verification")}
-      >
-        <div className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer">
+      <div className=" w-full p-8 pb-0">
+        <div
+          onClick={() => navigate("/otp-verification")}
+          className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer"
+        >
           <FaArrowLeft />
         </div>
         <div className="text-[32px] text-white w-[80%] my-8">
@@ -297,7 +297,7 @@ const PersonalDetails = () => {
             className="font-poppins w-full bg-purple text-lg text-white p-3 rounded-[28px]"
             onClick={handleClickButton}
           >
-            {loading ? <Sppiner /> : "Next"}
+            {loading ? <Sppiner /> : "Submit"}
           </button>
           <div className=" font-poppins text-xs text-gray-500 mt-3">
             By creating an account, I agree to Haqdarshak’s Terms of Service &

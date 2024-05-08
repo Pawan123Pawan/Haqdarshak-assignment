@@ -23,7 +23,7 @@ const EnterOtp = () => {
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && index !== 0) {
       const newOtp = [...otp];
-      newOtp[index - 1] = "";
+      newOtp[index-1] = "";
       setOtp(newOtp);
 
       if (e.target.previousSibling) {
@@ -54,7 +54,10 @@ const EnterOtp = () => {
   };
 
   const resendMessage = (
-    <div className="font-poppins text-sm text-gray-500 mt-8">
+    <div
+      onClick={() => navigate("/phone-number")}
+      className="font-poppins text-sm text-gray-500 mt-8"
+    >
       <span>
         Did not receive OTP?{"   "}
         <span className="text-sm text-purple font-semibold cursor-pointer">
@@ -77,11 +80,11 @@ const EnterOtp = () => {
 
   return (
     <div className="w-full h-screen  bg-purple md:w-1/2 lg:w-[30%] mx-auto flex items-center justify-between md:rounded-lg flex-col ">
-      <div
-        className=" w-full p-8 pb-0"
-        onClick={() => navigate("/otp-verification")}
-      >
-        <div className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer">
+      <div className=" w-full p-8 pb-0">
+        <div
+          onClick={() => navigate("/otp-verification")}
+          className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer"
+        >
           <FaArrowLeft />
         </div>
         <div className="text-[32px] text-white w-[80%] my-8">
@@ -107,7 +110,7 @@ const EnterOtp = () => {
             ? resendMessage
             : sentMessage}
         </div>
-        {otp.some((data, i) => data !== "") ? (
+        {otp.every((data, i) => data !== "") ? (
           <>
             <button
               className="font-poppins w-full bg-purple text-lg text-white p-3 rounded-[28px]"

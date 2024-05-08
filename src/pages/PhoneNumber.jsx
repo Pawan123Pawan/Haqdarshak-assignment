@@ -34,11 +34,11 @@ const PhoneNumber = () => {
 
   return (
     <div className="w-full h-screen  bg-purple md:w-1/2 lg:w-[30%] mx-auto flex items-center justify-between md:rounded-lg flex-col ">
-      <div
-        className=" w-full p-8 pb-0"
-        onClick={() => navigate("/where-are-you")}
-      >
-        <div className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer">
+      <div className=" w-full p-8 pb-0">
+        <div
+          onClick={() => navigate("/where-are-you")}
+          className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer"
+        >
           <FaArrowLeft />
         </div>
         <div className="text-[32px] text-white w-[80%] my-8">
@@ -74,7 +74,6 @@ const PhoneNumber = () => {
                   *Enter only numeric value and length must be 10.
                 </p>
               )}
-             
             </div>
             <div className=" font-poppins text-sm text-gray-500 mt-3">
               This is used to create an account in your name on the Haqdarshak

@@ -9,8 +9,11 @@ const Location = () => {
 
   return (
     <div className="w-full h-screen  bg-purple md:w-1/2 lg:w-[30%] mx-auto flex items-center  md:rounded-lg flex-col ">
-      <div className=" w-full p-8 pb-0" onClick={() => navigate("/login")}>
-        <div className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer">
+      <div className=" w-full p-8 pb-0">
+        <div
+          onClick={() => navigate("/login")}
+          className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer"
+        >
           <FaArrowLeft />
         </div>
         <div className="text-[32px] text-white w-[80%] my-8">
@@ -35,7 +38,10 @@ const Location = () => {
             <p className="mx-5 font-semibold">OR</p>
             <p className="border-t w-full border-myborderColor"></p>
           </div>
-          <div onClick={()=>navigate("/location-with-map")} className="bg-white flex items-center p-3 px-5 font-semibold gap-2 font-poppins rounded-3xl opacity-80 cursor-pointer">
+          <div
+            onClick={() => navigate("/location-with-map")}
+            className="bg-white flex items-center p-3 px-5 font-semibold gap-2 font-poppins rounded-3xl opacity-80 cursor-pointer"
+          >
             <span className="text-2xl">
               <MdMyLocation />
             </span>

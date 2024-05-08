@@ -23,8 +23,11 @@ const SelectLanguage = () => {
 
   return (
     <div className="w-full h-screen  bg-purple md:w-1/2 lg:w-[30%] mx-auto flex items-center justify-between md:rounded-lg flex-col ">
-      <div className=" w-full p-8 pb-0" onClick={() => navigate("/home2")}>
-        <div className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer">
+      <div className=" w-full p-8 pb-0">
+        <div
+          onClick={() => navigate("/home2")}
+          className=" bg-white w-[56px] h-[40px] rounded-3xl text-purple text-2xl flex items-center justify-center cursor-pointer"
+        >
           <FaArrowLeft />
         </div>
         <div className="text-[32px] text-white w-[80%] my-8">
@@ -33,7 +36,6 @@ const SelectLanguage = () => {
       </div>
       <div className="flex-1 bg-mybg h-auto w-full p-8  rounded-t-[10%] flex justify-between flex-col">
         <div className="w-full">
-
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="English"
